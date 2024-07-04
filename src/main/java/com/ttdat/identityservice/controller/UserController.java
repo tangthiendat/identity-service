@@ -3,6 +3,7 @@ package com.ttdat.identityservice.controller;
 import com.ttdat.identityservice.dto.request.UserCreationRequest;
 import com.ttdat.identityservice.entity.User;
 import com.ttdat.identityservice.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    User createUser(@RequestBody UserCreationRequest user) {
+    User createUser(@RequestBody @Valid UserCreationRequest user) {
         return userService.createUser(user);
     }
 
