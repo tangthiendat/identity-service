@@ -2,6 +2,8 @@ package com.ttdat.identityservice.service;
 
 import com.ttdat.identityservice.dto.request.UserCreationRequest;
 import com.ttdat.identityservice.entity.User;
+import com.ttdat.identityservice.exception.AppException;
+import com.ttdat.identityservice.exception.ErrorCode;
 import com.ttdat.identityservice.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ public class UserService {
     public User createUser(UserCreationRequest request) {
         User user = new User();
         if(userRepository.existsByUsername(request.getUsername())){
-            throw new RuntimeException("Username already exists");
+            throw new AppException(ErrorCode.USER_EXISTS);
         }
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());

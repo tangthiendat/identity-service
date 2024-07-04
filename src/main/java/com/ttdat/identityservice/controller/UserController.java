@@ -1,6 +1,7 @@
 package com.ttdat.identityservice.controller;
 
 import com.ttdat.identityservice.dto.request.UserCreationRequest;
+import com.ttdat.identityservice.dto.response.ApiResponse;
 import com.ttdat.identityservice.entity.User;
 import com.ttdat.identityservice.service.UserService;
 import jakarta.validation.Valid;
@@ -17,8 +18,10 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    User createUser(@RequestBody @Valid UserCreationRequest user) {
-        return userService.createUser(user);
+    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest user) {
+        ApiResponse<User> response = new ApiResponse<>();
+        response.setData(userService.createUser(user));
+        return response;
     }
 
     @PutMapping("/{userId}")
