@@ -1,12 +1,17 @@
 package com.ttdat.identityservice.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse <T>{
-    private int status = 200;
-    private String message;
-    private T data;
+    int status = 200;
+    String message;
+    T data;
 }
