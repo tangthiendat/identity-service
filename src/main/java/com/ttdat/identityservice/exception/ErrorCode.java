@@ -10,7 +10,8 @@ public enum ErrorCode {
     INVALID_KEY(1001, "Invalid message key"),
     USER_EXISTS(1002, "User already exists"),
     INVALID_USERNAME(1003, "Username must be at least 3 characters long"),
-    INVALID_PASSWORD(1004, "Password must be at least 8 characters long");
+    INVALID_PASSWORD(1004, "Password must be at least 8 characters long"),
+    USER_NOT_EXIST(1005, "User does not exist");
 
     private final int code;
     private final String message;

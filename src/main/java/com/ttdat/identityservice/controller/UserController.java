@@ -31,8 +31,10 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    UserResponse updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest user) {
-        return userService.updateUser(userId, user);
+    ApiResponse<UserResponse> updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest user) {
+        ApiResponse<UserResponse> response = new ApiResponse<>();
+        response.setData(userService.updateUser(userId, user));
+        return response;
     }
 
     @DeleteMapping("/{userId}")
@@ -41,13 +43,17 @@ public class UserController {
     }
 
     @GetMapping
-    List<UserResponse> getUsers() {
-        return userService.getUsers();
+    ApiResponse<List<UserResponse>> getUsers() {
+        ApiResponse<List<UserResponse>> response = new ApiResponse<>();
+        response.setData(userService.getUsers());
+        return response;
     }
 
     @GetMapping("/{userId}")
-    UserResponse getUser(@PathVariable String userId) {
-        return userService.getUser(userId);
+    ApiResponse<UserResponse> getUser(@PathVariable String userId) {
+        ApiResponse<UserResponse> response = new ApiResponse<>();
+        response.setData(userService.getUser(userId));
+        return response;
     }
 
 
